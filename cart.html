@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>eMercado - Todo lo que busques está aquí</title>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav w-100 justify-content-between">
+          <li class="nav-item">
+            <a class="nav-link" href="mercado.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="categories.html">Categorías</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sell.html">Vender</a>
+          </li>
+          <li class="nav-item">
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main>
+    <div class="container">
+
+      <h1>Carrito de compras</h1>
+      <h3>Artículos a comprar</h3>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Costo</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Subtotal</th>
+          </tr>
+        </thead>
+        <tbody id="agregarArt">
+
+        </tbody>
+      </table>
+      <form>
+        <fieldset>
+          <legend>Tipo de envío</legend>
+
+          <div>
+            <input type="radio" id="15%" value="15%" name="15%" checked>
+            <label for="15%">Premium 2 a 5 dias(15%)</label>
+          </div>
+          <div>
+            <input type="radio" id="7%" value="7%" name="15%">
+            <label for="7%">Premium 5 a 8 dias(15%)</label>
+          </div>
+          <div>
+            <input type="radio" id="5%" value="5%" name="15%">
+            <label for="5%">Premium 12 a 15 dias(5%)</label>
+          </div>
+
+        </fieldset>
+        <br>
+
+        <legend>Direccion de envio</legend>
+        <div>
+          <label for="calle">Calle</label>
+          <input type="text" name="calle" id="calle" class="form-control" style="width: 500px ;" required>
+        </div>
+        <div style="margin-top: 20px ;">
+          <label for="numero">Numero</label>
+          <input type="text" name="numero" id="numero" class="form-control" style="width: 500px ;" required>
+        </div>
+        <div style="margin-top: 20px ;">
+          <label for="esquina">Esquina</label>
+          <input type="text" name="esquina" id="esquina" class="form-control" style="width: 500px ;" required>
+        </div>
+        <br>
+        
+
+      </form>
+      <hr>
+      
+      <div class="list-group">
+        <h3>Costos</h1>
+          <div class="list-group-item d-flex gap-3 py-3" id="subtotal2" >
+            <p id="subtotal">Subtotal</p>
+          </div>
+          <div class="list-group-item d-flex gap-3 py-3" >
+            <p id="costoEnvio" >Costo de envío</p>
+          </div>
+          <div class="list-group-item d-flex gap-3 py-3" >
+            <p id="total">Total ($)</p>
+          </div>
+      </div>
+
+      <div>
+        <h3>Forma de pago</h3>
+      </div>
+
+
+      <div>
+        <button type="button" class="btn btn-link ps-0" data-bs-toggle="modal"
+          data-bs-target="#modalTerminos" id="terminos2">No ha seleccionado</button>
+          <div id="terminos2" class="invalid-feedback">
+            Debe seleccionar una forma de pago
+          </div>
+      </div>
+
+      <button class="btn btn-primary mt-4" type="submit">Finalizar compra</button>
+
+
+    </div>
+  </main>
+      <div class="modal fade" id="modalTerminos" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5">Forma de pago</h1>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-row">
+                  <div>
+                    <input type="radio" name="credito">
+                    <label>Tarjeta de credito</label>
+                  </div>
+                  <hr>
+                  <div class="form-group col-md-6">
+                    <label for="tarjeta">Numero de tarjeta</label>
+                    <input type="text" class="form-control" id="tarjeta">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="codigoSeg">Código de seg.</label>
+                    <input type="number" class="form-control" id="codigoSeg">
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="vencimiento">Vencimiento</label>
+                  <input type="text" class="form-control" id="vencimiento"  >
+                </div>
+                <div>
+                  <input class="mt-4" type="radio" name="credito">
+                  <label>Transferencia bancaria</label>
+                </div>
+                <hr>
+                <div class="form-group col-md-6">
+                  <label for="bancaria">Numero de cuenta</label>
+                  <input type="number" class="form-control" id="bancaria">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <div>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  <footer class="text-muted">
+    <div class="container">
+      <p class="float-end">
+        <a href="#">Volver arriba</a>
+      </p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a> -
+        2022</p>
+      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+    </div>
+  </footer>
+  <div id="spinner-wrapper">
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+
+</html>
