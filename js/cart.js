@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
             addCart()
             total()
             mostrarTotal()
+            mostrarCostoEnvio()
+            mostrarTotalFinal ()
         })
         .catch(err => {
             console.log(err)
@@ -37,10 +39,13 @@ document.addEventListener("DOMContentLoaded", function () {
         agregarCart.innerHTML = addProd
     }
 
-    agregarCart.addEventListener("click", function (e) {
+    agregarCart.addEventListener("click", function (e) {   
         subtotal(e)
         total()
         mostrarTotal()
+        mostrarCostoEnvio()
+        mostrarTotalFinal ()
+        
     })
 
     function subtotal(e) {                                              // calcula el subtotal para cada articulo
@@ -64,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function total() {                                                             //calcula el subtotal antes de costos de envio
         contador = 0
-
+        if(compra){
         for (let precio of compra) {
             if (precio.currency == "UYU") {
                 contador += parseInt(precio.unitCost / 42) * precio.count  // precio del dolar : 42 pesos por dolar
@@ -74,38 +79,57 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         return contador
-
+     }
     }
 
-    function costoEnvio() {
-
+    function costoEnvio() {                         //calcula el costo de envio segun cual este seleccionado
+       if(document.getElementById("15%").checked){
+            quince = total() * 0.15
+            return quince
+       }
+       if(document.getElementById("7%").checked){
+            siete = total() * 0.07
+            return siete
+       }
+       if(document.getElementById("5%").checked){
+         cinco = total() * 0.05
+         return cinco
+       }
     }
 
-    function mostrarTotal() {
+    
+
+
+
+    document.getElementById("envio").addEventListener("click",  () => {                      //evento de escucha a los inputs radio
+        costoEnvio()
+        totaFinal ()
+        mostrarCostoEnvio()
+        mostrarTotalFinal ()
+    })
+
+
+
+    function totaFinal () {                     //calcula el total final, costo  de envio mas subtotal
+        Final = total() + costoEnvio()
+        return Final
+    }
+
+    function mostrarTotalFinal () {                                 //muestra el total final 
+        document.getElementById("total").innerHTML = `<p>Total($)</p> <span>USD ${totaFinal()}</span>`
+    }
+
+
+    function mostrarCostoEnvio() {                                  //muestra el costo de envio en pantalla
+        document.getElementById("costoEnvio").innerHTML = `<p>Costo de envío</p> <span>USD ${costoEnvio()}</span>`
+    }
+
+    function mostrarTotal() {                               // muestra el subtotal en pantalla
         document.getElementById("subtotal").innerHTML = `<p>Subtotal</p> <span>USD ${total()}</span>`
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 })
+
 
 
 
