@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function mostrarTotalFinal () {                                 //muestra el total final 
-        document.getElementById("total").innerHTML = `<p>Total($)</p> <span>USD ${totaFinal()}</span>`
+        document.getElementById("total").innerHTML = `<p>Total($)</p> <span> <strong>USD ${totaFinal()}</strong></span>`
     }
 
 
@@ -128,8 +128,76 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("subtotal").innerHTML = `<p>Subtotal</p> <span>USD ${total()}</span>`
     }
 
-})
 
+    //VALIDACIONES//
+
+let submit = document.getElementById("BtnSubmit");
+let tarjeta  = document.getElementById("tarjeta");
+let segCod = document.getElementById("codigoSeg");
+let vencimiento = document.getElementById("vencimiento");
+let credito = document.getElementById("credito");
+let transferencia = document.getElementById("transfer");
+let nrocuenta = document.getElementById("bancaria");
+let tipoDePago = document.getElementById("tipoDePago");
+
+(function () {
+    'use strict'
+    var forms = document.querySelectorAll('.needs-validation')
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+          if(form.checkValidity()){
+            showAlertSuccess()
+          }
+          checkInputsChecked ()
+
+          form.classList.add('was-validated')
+        }, false)
+        
+      })
+  })()
+
+
+
+
+  function checkInputsChecked () {
+    if (!tarjeta.checked && !transferencia.checked){
+        document.getElementById("terminos2").classList.add("is-invalid")
+    }
+  }
+
+     
+
+    tipoDePago.addEventListener("click", () => {
+   
+        if(credito.checked){
+            tarjeta.disabled = false
+            vencimiento.disabled = false
+            segCod.disabled = false
+            nrocuenta.disabled = true
+            document.getElementById("terminos2").classList.remove("is-invalid")
+            document.getElementById("selectPayment").innerHTML = `<span>Tarjeta de credito</span>`
+            
+        }
+        if(transferencia.checked){
+            nrocuenta.disabled = false
+            tarjeta.disabled = true
+            vencimiento.disabled = true
+            segCod.disabled = true
+            document.getElementById("terminos2").classList.remove("is-invalid")
+            document.getElementById("selectPayment").innerHTML = `<span>Transferencia bancaria</span>`
+        }
+    })
+
+    function showAlertSuccess(){
+        document.getElementById("alert-success").classList.add("show")
+        }
+
+})
 
 
 

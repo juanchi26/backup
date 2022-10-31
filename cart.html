@@ -55,8 +55,8 @@
 
         </tbody>
       </table>
-      <form>
-        <fieldset >
+      <form class="needs-validation" novalidate>
+        <fieldset>
           <legend>Tipo de envío</legend>
           <div id="envio">
           <div>
@@ -78,99 +78,114 @@
         <legend>Direccion de envio</legend>
         <div>
           <label for="calle">Calle</label>
-          <input type="text" name="calle" id="calle" class="form-control" style="width: 500px ;" required>
+          <input type="text" name="calle" id="calle" class="form-control " style="width: 500px ;" required>
+          <div class="invalid-feedback">
+            Ingresa una calle.
+          </div>
         </div>
         <div style="margin-top: 20px ;">
           <label for="numero">Numero</label>
           <input type="text" name="numero" id="numero" class="form-control" style="width: 500px ;" required>
+          <div class="invalid-feedback">
+            Ingresa un número.
+          </div>
         </div>
         <div style="margin-top: 20px ;">
           <label for="esquina">Esquina</label>
           <input type="text" name="esquina" id="esquina" class="form-control" style="width: 500px ;" required>
+          <div class="invalid-feedback">
+            Ingresa una esquina.
+          </div>
         </div>
+
         <br>
+
+        <div class="list-group">
+          <h3>Costos</h1>
+            <div class="list-group-item d-flex gap-3 py-3" id="subtotal2" >
+              <p id="subtotal">Subtotal</p>
+            </div>
+            <div class="list-group-item d-flex gap-3 py-3" >
+              <p id="costoEnvio" >Costo de envío</p>
+            </div>
+            <div class="list-group-item d-flex gap-3 py-3" >
+              <p id="total">Total ($)</p>
+            </div>
+        </div>
+  
+        <div>
+          <h3>Forma de pago</h3>
+        </div>
         
-
-      </form>
-      <hr>
-      
-      <div class="list-group">
-        <h3>Costos</h1>
-          <div class="list-group-item d-flex gap-3 py-3" id="subtotal2" >
-            <p id="subtotal">Subtotal</p>
-          </div>
-          <div class="list-group-item d-flex gap-3 py-3" >
-            <p id="costoEnvio" >Costo de envío</p>
-          </div>
-          <div class="list-group-item d-flex gap-3 py-3" >
-            <p id="total">Total ($)</p>
-          </div>
-      </div>
-
-      <div>
-        <h3>Forma de pago</h3>
-      </div>
-
-
-      <div>
-        <button type="button" class="btn btn-link ps-0" data-bs-toggle="modal"
-          data-bs-target="#modalTerminos" id="terminos2">No ha seleccionado</button>
-          <div id="terminos2" class="invalid-feedback">
-            Debe seleccionar una forma de pago
-          </div>
-      </div>
-
-      <button class="btn btn-primary mt-4" type="submit">Finalizar compra</button>
-
-
-    </div>
-  </main>
-      <div class="modal fade" id="modalTerminos" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5">Forma de pago</h1>
+        <div>
+        <div id="selectPayment">
+          <span>No has seleccionado</span>
+        </div>
+          <button type="button" class="btn btn-link ps-0 d-flex" data-bs-toggle="modal"
+            data-bs-target="#modalTerminos" id="terminos2">seleccionar</button>
+            <div id="terminos2" class="invalid-feedback">
+              Debe seleccionar una forma de pago
             </div>
-            <div class="modal-body">
-              <form>
-                <div class="form-row">
-                  <div>
-                    <input type="radio" name="credito">
-                    <label>Tarjeta de credito</label>
+        </div>
+        
+        <div class="modal fade" id="modalTerminos" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5">Forma de pago</h1>
+              </div>
+              
+              <div class="modal-body">
+                  <div class="form-row" id="tipoDePago">
+                    <div>
+                      <input type="radio" id="credito" name="credito">
+                      <label>Tarjeta de credito</label>
+                    </div>
+                    <hr>
+                    <div class="form-group col-md-6">
+                      <label for="tarjeta">Numero de tarjeta</label>
+                      <input type="text" class="form-control" id="tarjeta" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="codigoSeg">Código de seg.</label>
+                      <input type="number" class="form-control" id="codigoSeg" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="vencimiento">Vencimiento</label>
+                      <input type="text" class="form-control" id="vencimiento" required>
+                    </div>
+                    <div>
+                      <input class="mt-4" type="radio" id="transfer" name="credito" required>
+                      <label>Transferencia bancaria</label>
+                    </div>
+                    <hr>
+                    <div class="form-group col-md-6">
+                      <label for="bancaria">Numero de cuenta</label>
+                      <input type="number" class="form-control" id="bancaria" required>
+                    </div>
                   </div>
-                  <hr>
-                  <div class="form-group col-md-6">
-                    <label for="tarjeta">Numero de tarjeta</label>
-                    <input type="text" class="form-control" id="tarjeta">
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="codigoSeg">Código de seg.</label>
-                    <input type="number" class="form-control" id="codigoSeg">
-                  </div>
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="vencimiento">Vencimiento</label>
-                  <input type="text" class="form-control" id="vencimiento"  >
-                </div>
+                  
+              </div>
+              <div class="modal-footer">
                 <div>
-                  <input class="mt-4" type="radio" name="credito">
-                  <label>Transferencia bancaria</label>
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
                 </div>
-                <hr>
-                <div class="form-group col-md-6">
-                  <label for="bancaria">Numero de cuenta</label>
-                  <input type="number" class="form-control" id="bancaria">
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <div>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
               </div>
             </div>
           </div>
         </div>
+        
+  
+        <button class="btn btn-primary mt-4" type="submit" id="BtnSubmit">Finalizar compra</button>
+      </form>
+      <hr>
+      <div class="alert alert-success alert-dismissible fade" role="alert" id="alert-success">
+        <p>Has comprado con éxito!</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
+    </div>
+  </main>
+      
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
