@@ -79,7 +79,7 @@ let cerrarSesion = document.getElementById("cierreSesion")
 
 cerrarSesion.addEventListener("click", function () {
   localStorage.removeItem("email")
-  location.reload()
+  window.location = "mercado.html"
 
 })
 
